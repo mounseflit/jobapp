@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load is_job_already_applied %}
+{% load is_job_already_saved %}
+{% block content %}
+    <h1>Job Quiz</h1>
+    <form id="quiz-form" action="{% url 'jobapp:submit-quiz' job_id=job_id %}" method="POST">
+        {% csrf_token %}
+        <br>
+        <h3>{{ question_1}}</h3>
+        <input type="text" name="answer_1" /><br><br>
+
+        <h3>{{ question_2 }}</h3>
+        <input type="text" name="answer_2" /><br><br>
+
+        <h3>{{ question_3 }}</h3>
+        <input type="text" name="answer_3" /><br><br>
+        <input type="hidden" name="job_id" value="{{ job_id }}">
+
+        <input type="submit" value="Submit Quiz" /><br><br>
+    </form>
+
+    
+{% endblock content %}
